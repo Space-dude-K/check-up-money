@@ -1,0 +1,28 @@
+===================================================================================================================
+===============================================[ 28.12.2020 18:41:30 ]===============================================
+===================================================================================================================
+[28.12.2020 18:41:30]:[INF] Startup check.
+[28.12.2020 18:41:30]:[INF] repPath skipped S
+[28.12.2020 18:41:30]:[ERR][PathsValidator][ValidatePathSettingsFromSettings] oblPath C:\ write access error, check privileges!
+[28.12.2020 18:41:30]:[ERR][PathsValidator][ValidatePathSettingsFromSettings] cityPath C:\ write access error, check privileges!
+[28.12.2020 18:41:30]:[ERR][PathsValidator][ValidatePathSettingsFromSettings] regPath C:\ write access error, check privileges!
+[28.12.2020 18:41:30]:[ERR][PathsValidator][ValidatePathSettingsFromSettings] uniPath C:\ write access error, check privileges!
+[28.12.2020 18:41:30]:[INF] extrabudPath skipped S
+[28.12.2020 18:41:37]:[ERR][RemoteHostAvailabilityChecker][CheckRealServer] Сервер G600-SRREP недоступен. Исключение во время запроса Ping.
+[28.12.2020 18:41:37]:[INF] Settings: False database host: False
+[28.12.2020 18:41:54]:[INF] Starting watcher for next dir: E:\work\Projects\CheckUpMoneyRemastered\WatcherTest
+[28.12.2020 18:41:54]:[INF] 2
+===================================================================================================================
+===============================================[ 28.12.2020 18:42:04 ]===============================================
+===================================================================================================================
+[28.12.2020 18:42:04]:[INF] Startup check.
+[28.12.2020 18:42:04]:[INF] repPath skipped S
+[28.12.2020 18:42:04]:[ERR][PathsValidator][ValidatePathSettingsFromSettings] oblPath C:\ write access error, check privileges!
+[28.12.2020 18:42:04]:[ERR][PathsValidator][ValidatePathSettingsFromSettings] cityPath C:\ write access error, check privileges!
+[28.12.2020 18:42:04]:[ERR][PathsValidator][ValidatePathSettingsFromSettings] regPath C:\ write access error, check privileges!
+[28.12.2020 18:42:04]:[ERR][PathsValidator][ValidatePathSettingsFromSettings] uniPath C:\ write access error, check privileges!
+[28.12.2020 18:42:04]:[INF] extrabudPath skipped S
+[28.12.2020 18:42:11]:[ERR][RemoteHostAvailabilityChecker][CheckRealServer] Сервер G600-SRREP недоступен. Исключение во время запроса Ping.
+[28.12.2020 18:42:11]:[INF] Settings: False database host: False
+[28.12.2020 18:42:13]:[INF] Starting watcher for next dir: E:\work\Projects\CheckUpMoneyRemastered\WatcherTest
+[28.12.2020 18:42:13]:[INF] 2

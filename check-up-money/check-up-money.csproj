@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <BeautyLibsDir>Lib</BeautyLibsDir>
+    <BeautyExcludes>Lib*;Archive*;Settings*</BeautyExcludes>
+    <BeautyHiddens>hostfxr;hostpolicy;*.deps.json;*.runtimeconfig*.json</BeautyHiddens>
+    <DisableBeauty>False</DisableBeauty>
+    <NoBeautyFlag>False</NoBeautyFlag>
+    <ForceBeauty>True</ForceBeauty>
+    <DisablePatch>True</DisablePatch>
+    <BeautyLogLevel>Info</BeautyLogLevel>
+    <RootNamespace>check_up_money</RootNamespace>
+    <UseWindowsForms>true</UseWindowsForms>
+    <StartupObject>check_up_money.Program</StartupObject>
+    <ApplicationIcon>Resources\Icons\Money.ico</ApplicationIcon>
+    <AssemblyName>Check-up-money</AssemblyName>
+    <Version>1.2.5</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.Platforms" Version="5.0.4" />
+    <PackageReference Include="NLog" Version="4.7.11" />
+    <PackageReference Include="nulastudio.NetCoreBeauty" Version="1.2.9.3" />
+    <PackageReference Include="System.Data.Odbc" Version="5.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Settings\MainSettings.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Settings\Nlog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="set publishDir=&quot;$(ProjectDir)bin\Publish\&quot;&#xD;&#xA;Echo Deleting dir: %25publishDir%25&#xD;&#xA;rd /s /q %25publishDir%25&#xD;&#xA;Echo Done." />
+  </Target>
+
+</Project>
+

@@ -1,0 +1,81 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <RootNamespace>check_up_money_test</RootNamespace>
+
+    <IsPackable>false</IsPackable>
+
+    <ApplicationIcon />
+
+    <OutputType>WinExe</OutputType>
+
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+    <PackageReference Include="NLog" Version="4.7.11" />
+    <PackageReference Include="NUnit" Version="3.13.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+    <PackageReference Include="coverlet.collector" Version="3.0.2" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Settings\" />
+    <Folder Include="TestFiles\TestPackage\CbMainCurrency\cityPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMainCurrency\extPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMainCurrency\uniPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMainCurrency\repPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMainCurrency\regPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMainCurrency\oblPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMain\cityPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMain\extPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMain\uniPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMain\repPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMain\regPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMain\oblPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMiscCurrency\cityPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMiscCurrency\extPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMiscCurrency\uniPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMiscCurrency\repPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMiscCurrency\regPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMiscCurrency\oblPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMisc\cityPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMisc\extPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMisc\uniPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMisc\repPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMisc\regPath\" />
+    <Folder Include="TestFiles\TestPackage\CbMisc\oblPath\" />
+    <Folder Include="TestFiles\TestPackage\CbTicketIn\cityPath\" />
+    <Folder Include="TestFiles\TestPackage\CbTicketIn\extPath\" />
+    <Folder Include="TestFiles\TestPackage\CbTicketIn\uniPath\" />
+    <Folder Include="TestFiles\TestPackage\CbTicketIn\repPath\" />
+    <Folder Include="TestFiles\TestPackage\CbTicketIn\regPath\" />
+    <Folder Include="TestFiles\TestPackage\CbTicketIn\oblPath\" />
+    <Folder Include="TestFiles\TestPackage\CbTicketOutCurrency\cityPath\" />
+    <Folder Include="TestFiles\TestPackage\CbTicketOutCurrency\extPath\" />
+    <Folder Include="TestFiles\TestPackage\CbTicketOutCurrency\uniPath\" />
+    <Folder Include="TestFiles\TestPackage\CbTicketOutCurrency\repPath\" />
+    <Folder Include="TestFiles\TestPackage\CbTicketOutCurrency\regPath\" />
+    <Folder Include="TestFiles\TestPackage\CbTicketOutCurrency\oblPath\" />
+    <Folder Include="TestFiles\TestPackage\CbTicketOut\cityPath\" />
+    <Folder Include="TestFiles\TestPackage\CbTicketOut\extPath\" />
+    <Folder Include="TestFiles\TestPackage\CbTicketOut\uniPath\" />
+    <Folder Include="TestFiles\TestPackage\CbTicketOut\repPath\" />
+    <Folder Include="TestFiles\TestPackage\CbTicketOut\regPath\" />
+    <Folder Include="TestFiles\TestPackage\CbTicketOut\oblPath\" />
+    <Folder Include="TestFiles\TestPackage\MainIn\cityPath\" />
+    <Folder Include="TestFiles\TestPackage\MainIn\extPath\" />
+    <Folder Include="TestFiles\TestPackage\MainIn\uniPath\" />
+    <Folder Include="TestFiles\TestPackage\MainIn\repPath\" />
+    <Folder Include="TestFiles\TestPackage\MainIn\regPath\" />
+    <Folder Include="TestFiles\TestPackage\MainIn\oblPath\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\check-up-money\check-up-money.csproj" />
+  </ItemGroup>
+
+</Project>
