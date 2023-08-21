@@ -275,8 +275,6 @@ namespace check_up_money
 
             logger.Info($"Starting notification reminder for files. Repeat time: {periodicNotificationDelayInMinutes}");
 
-            //ShowTrayNotification(notificationData.Count, notificationData, notificationData.First().FileName);
-
             try
             {
                 while(!token.IsCancellationRequested)
@@ -286,7 +284,6 @@ namespace check_up_money
 
                     // Run notification.
                     ShowNotificationAll(notificationData.Count, unsentFileChecker.UnsentFilesCounters);
-                    //ShowTrayNotification(this.notificationData.Count, outFilesCount, this.notificationData, notificationData.First().FileName);
                 }
             }
             catch (OperationCanceledException)

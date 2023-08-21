@@ -224,7 +224,8 @@ namespace check_up_money.CheckUpFile
 
             return cb;
         }
-        private CheckUpDataStruct SetBlobType(string lineStr, string startPrefix, CheckUpBlob cb, CheckUpDataStruct cds, bool isForeignCurrency)
+        private CheckUpDataStruct SetBlobType(string lineStr, string startPrefix, CheckUpBlob cb, CheckUpDataStruct cds, 
+            bool isForeignCurrency)
         {
             if (lineStr.StartsWith(startPrefix))
             {

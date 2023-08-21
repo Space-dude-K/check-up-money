@@ -103,13 +103,6 @@ namespace check_up_money
                 tlp.Controls.Add(lb, c, 5);
             }
 
-            // Merge cells.
-            //tlp.SetColumnSpan(tlp.GetControlFromPosition(0, 1), 3);
-            //tlp.SetColumnSpan(tlp.GetControlFromPosition(3, 1), 3);
-            //tlp.SetColumnSpan(tlp.GetControlFromPosition(0, 2), 6);
-
-            //this.Controls.Add(tlp);
-
             return tlp;
         }
     }

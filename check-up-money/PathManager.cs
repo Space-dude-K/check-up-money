@@ -48,15 +48,10 @@ namespace check_up_money
 
                 if (!path.pathType.Contains("BankTicket"))
                 {
-                    //isEnabled = budgetSettings.Single(ps =>
-                    //    budgetType.Equals(ps.budgetType.Substring(0, 3))).isEnabled;
-
                     isEnabled = GetEnabledStatusForPath(budgetType, path.pathType, checkedPaths);
                 }
                 else
                 {
-                    //isEnabled = ticketSettings.Single(ps =>
-                    //    budgetType.Equals(ps.ticketType.Substring(0, 3))).isEnabled;
                     isEnabled = GetEnabledStatusForPath(budgetType, path.pathType, checkedPaths);
                     fileMask = "CW*.txt";
                 }
