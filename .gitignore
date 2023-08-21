@@ -9,6 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+check-up-money-test/TestFiles/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -17,7 +18,7 @@
 mono_crash.*
 
 # Build results
-check-up-money-test/TestFiles/
+
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
