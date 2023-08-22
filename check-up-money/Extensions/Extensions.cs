@@ -67,7 +67,8 @@ namespace check_up_money.Extensions
                 .EnumerateFiles(path, "*.*")
                 .Where(file => exts.Any(x => file.EndsWith(x, StringComparison.OrdinalIgnoreCase)));
         }
-        public static List<(string path, string pathType)> ChangeBaseDirForPathSettings(this List<(string pathType, string path)> ps, string newBaseDir)
+        public static List<(string path, string pathType)> ChangeBaseDirForPathSettings(this List<(string pathType, string path)> ps, 
+            string newBaseDir)
         {
             List<(string pathType, string path)> newPs = new();
 

@@ -1,6 +1,4 @@
-﻿using check_up_money.Interfaces;
-using check_up_money.Settings;
-using NLog;
+﻿using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,9 +55,12 @@ namespace check_up_money
                 }
 
                 if (path.pathType.Contains("Out") && !path.pathType.Contains("Currency"))
-                    isCurrencyEnabled = currencySettings.Single(cs => budgetType.Equals(cs.budgetType.Substring(0, 3))).isEnabled;
+                    isCurrencyEnabled = currencySettings
+                        .Single(cs => budgetType.Equals(cs.budgetType.Substring(0, 3))).isEnabled;
 
-                loggerDebug.Debug($"Path: {path.pathType} - file mask: {fileMask} - status: {isEnabled} - currency status: {isCurrencyEnabled}");
+                loggerDebug.
+                    Debug($"Path: {path.pathType} " +
+                    $"- file mask: {fileMask} - status: {isEnabled} - currency status: {isCurrencyEnabled}");
                 checkedPaths.Add((path.pathType, path.path, fileMask, isEnabled, isCurrencyEnabled));
             }
 
@@ -74,9 +75,8 @@ namespace check_up_money
 
             if(pathType.Contains("Currency"))
             {
-                var parentPath = checkedPaths.Single(cp => cp.pathType.Equals(pathType.Substring(0, pathType.Length - "Currency".Length)));
-
-                //loggerDebug.Debug($"Parent path for: {pathType} - {budgetType}: {parentPath.pathType}");
+                var parentPath = 
+                    checkedPaths.Single(cp => cp.pathType.Equals(pathType.Substring(0, pathType.Length - "Currency".Length)));
 
                 if(parentPath.isEnabled && parentPath.isCurrencyEnabled)
                 {

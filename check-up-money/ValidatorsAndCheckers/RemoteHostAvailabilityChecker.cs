@@ -112,8 +112,6 @@ namespace check_up_money.ValidatorsAndCheckers
                 // ignored
             }
 
-            //loggerError.Error($"Is {connection.ConnectionString} is connected? - {isConnected}");
-
             return isConnected;
         }
         public async Task<bool> CheckRealBd(string connStr)

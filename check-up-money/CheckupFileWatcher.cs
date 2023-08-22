@@ -68,12 +68,14 @@ namespace check_up_money
 
             watcher.Disposed += Watcher_Disposed;
 
-            watcher.Created += new FileSystemEventHandler((sender, e) => Watcher_Created(sender, e, budgetType, tableLayoutControl));
-            //watcher.Created += new FileSystemEventHandler((sender, e) => Watcher_Changed(sender, e, labelNameAndTip.pathName, tableLayoutControl));
-            watcher.Deleted += new FileSystemEventHandler((sender, e) => Watcher_Deleted(sender, e, tableLayoutControl));
-            //watcher.Deleted += new FileSystemEventHandler((sender, e) => Watcher_Changed(sender, e, labelNameAndTip.pathName, tableLayoutControl));
-            watcher.Changed += new FileSystemEventHandler((sender, e) => Watcher_Updated(sender, e, budgetType, tableLayoutControl));
-            watcher.Renamed += new RenamedEventHandler((sender, e) => Watcher_Renamed(sender, e, tableLayoutControl));
+            watcher.Created += 
+                new FileSystemEventHandler((sender, e) => Watcher_Created(sender, e, budgetType, tableLayoutControl));
+            watcher.Deleted += 
+                new FileSystemEventHandler((sender, e) => Watcher_Deleted(sender, e, tableLayoutControl));
+            watcher.Changed += 
+                new FileSystemEventHandler((sender, e) => Watcher_Updated(sender, e, budgetType, tableLayoutControl));
+            watcher.Renamed += 
+                new RenamedEventHandler((sender, e) => Watcher_Renamed(sender, e, tableLayoutControl));
 
             watcher.EnableRaisingEvents = true;
             watcher.IncludeSubdirectories = false;
@@ -116,7 +118,8 @@ namespace check_up_money
                 //  and internal buffer of the  FileSystemWatcher is not large enough to handle this
                 //  rate of events. The InternalBufferOverflowException error informs the application
                 //  that some of the file system events are being lost.
-                loggerError.Error($"The file system watcher experienced an internal buffer overflow: {exception.Message} for {watcher.Path}");
+                loggerError.Error($"The file system watcher experienced an internal buffer overflow: " +
+                    $"{exception.Message} for {watcher.Path}");
             }
             else if(exception.GetType() == typeof(Win32Exception))
             {
@@ -129,7 +132,8 @@ namespace check_up_money
                 if (watcherErrorCounter >= 20)
                 {
                     loggerError.Error($"The maximum number of restore attempts for the file system watcher has been reached.");
-                    throw new Exception($"Превышено максимальное количество попыток восстановления связи с директорией: {watcher.Path}");
+                    throw new Exception($"Превышено максимальное количество попыток восстановления связи с директорией: " +
+                        $"{watcher.Path}");
                 }
 
                 loggerError.Error($"Restoring watcher for: {watcher.Path}. Attempt № {watcherErrorCounter}");
@@ -222,10 +226,6 @@ namespace check_up_money
                 }
                 else
                 {
-                    //CurrentFilesInFolder = Directory.GetFiles(Path.GetDirectoryName(e.FullPath)).Count();
-
-                    //UpdateTableFileCounter(pathName, Path.GetDirectoryName(e.FullPath), tableLayoutControl);
-
                     // Update oc.
                     UpdateFileObservableCollection(Path.GetFileName(e.Name));
 
@@ -290,7 +290,8 @@ namespace check_up_money
 
                     logger.Info($"File renamed {e.FullPath}. Attempting rename {oldFullPath} to {newFullPath} ({newFileName})");
 
-                    if (!string.IsNullOrWhiteSpace(oldFullPath) && !string.IsNullOrWhiteSpace(newFullPath) && !string.IsNullOrWhiteSpace(newFileName))
+                    if (!string.IsNullOrWhiteSpace(oldFullPath) && !string.IsNullOrWhiteSpace(newFullPath) 
+                        && !string.IsNullOrWhiteSpace(newFileName))
                     {
                         fh.UpdateFileName(oldFullPath, newFullPath, newFileName);
                     }

@@ -46,7 +46,8 @@ namespace check_up_money
 
         public FileHandler(IMain main, IFileParser fp,
             List<(string pathType, string path, string fileMask, bool isEnabled, bool isCurrencyEnabled)> pathsToInit,
-            IStreamManager sm, ISqlCmdExecutor sce, DbConnector dbConnector, IPathManager pathManager, IRemoteHostAvailabilityChecker rhac,
+            IStreamManager sm, ISqlCmdExecutor sce, DbConnector dbConnector, IPathManager pathManager, 
+            IRemoteHostAvailabilityChecker rhac,
             string archiveBackupFolder, bool isFileBackupActive, string mainDb)
         {
             loggerDebug.Debug("Init.");
@@ -521,7 +522,8 @@ namespace check_up_money
 
                 loggerCopy.Info($"Copy file [{fileType.GetEnumDescription()}] -> [{sourceFile}] to [{destinationFile}]");
 
-                using(FileStream sourceStream = await sm.WaitForFileStream(sourceFile, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using(FileStream sourceStream = await sm.WaitForFileStream(sourceFile, FileMode.Open,
+                    FileAccess.Read, FileShare.Read))
                 using (FileStream destinationStream = File.Create(destinationFile))
                 {
                     sw.Start();

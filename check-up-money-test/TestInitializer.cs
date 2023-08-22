@@ -165,7 +165,7 @@ namespace check_up_money_test
             pathsToInit = pathManager.GetPathsToInit();
 
             fileLockHelper = new FileLockHelper();
-            streamManager = new StreamManager(fileLockHelper, 20, 30);
+            streamManager = new StreamManager(fileLockHelper, 60, 30);
             fileParser = new TestFileParser(fileLockHelper, allowedFileExtensions, streamManager);
             fileHandler = new TestFileHandler(fileParser, pathsToInit, streamManager, pathManager, archivePath, false, checkUpBlobs, archivePath);
             

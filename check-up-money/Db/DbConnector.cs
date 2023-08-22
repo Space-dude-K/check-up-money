@@ -43,7 +43,8 @@ namespace check_up_money.Db
             {
                 sConnBOdbc = new OdbcConnectionStringBuilder();
                 sConnBOdbc["Driver"] = ri.Driver;
-                sConnBOdbc["Server"] = string.IsNullOrWhiteSpace(ri.Instance) || ri.Instance.Equals("-") ? ri.Host : ri.Host + @"\" + ri.Instance;
+                sConnBOdbc["Server"] = string.IsNullOrWhiteSpace(ri.Instance) || ri.Instance.Equals("-") ? ri.Host : ri.Host + @"\" 
++ ri.Instance;
                 sConnBOdbc["Database"] = ri.Db;
                 sConnBOdbc["uid"] = cypher.ToInsecureString(cypher.DecryptString(ri.User, ri.USalt));
                 sConnBOdbc["pwd"] = cypher.ToInsecureString(cypher.DecryptString(ri.Password, ri.PSalt));

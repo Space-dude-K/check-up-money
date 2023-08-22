@@ -41,7 +41,8 @@ namespace check_up_money
         private readonly int balloonTipTimePeriodInMilliseconds;
 
         public NotificationManager(IMain main, int periodicNotificationDelayInMinutes, int balloonTipTimePeriodInSeconds, 
-            IUnsentFileChecker unsentFileChecker, IDirectoryStatusChecker directoryStatusChecker, NotifyIcon notifyIconForMainStatus)
+            IUnsentFileChecker unsentFileChecker, IDirectoryStatusChecker directoryStatusChecker, 
+            NotifyIcon notifyIconForMainStatus)
         {
             loggerDebug.Debug("Init.");
             this.main = main;
@@ -67,14 +68,16 @@ namespace check_up_money
             string notificationTitle = "Внимание!";
             string notificationText = "CheckUpMoney свёрнут.";
 
-            notifyIconForMainStatus.ShowBalloonTip(balloonTipTimePeriodInMilliseconds, notificationTitle, notificationText, ToolTipIcon.Info);
+            notifyIconForMainStatus.ShowBalloonTip(balloonTipTimePeriodInMilliseconds, 
+                notificationTitle, notificationText, ToolTipIcon.Info);
         }
         public void DisableTrayNotificationForMainState()
         {
             if (notifyIconForMainStatus != null)
                 notifyIconForMainStatus.Dispose();
         }
-        private void ShowTrayNotification(int filesCount, int outFilesCount, BindingList<CheckUpBlob> notificationData = null, string fileName = null)
+        private void ShowTrayNotification(int filesCount, int outFilesCount, 
+            BindingList<CheckUpBlob> notificationData = null, string fileName = null)
         {
 
             if (filesCount > 1)
@@ -102,11 +105,10 @@ namespace check_up_money
             StringBuilder sb = new StringBuilder();
             sb.Append(notificationText);
 
-            //logger.Info($"Show notification for processing files. Balloon timer: {balloonTipTimePeriodInMilliseconds} milliseconds.");
-
             if(notificationData.Count > 0)
                 notifyIconForMainStatus.ShowBalloonTip(balloonTipTimePeriodInMilliseconds, notificationTitle, 
-                    sb.ToString() + System.Environment.NewLine + GetTextForUnsentFilesNotification(unsentFileChecker.UnsentFilesCounters), ToolTipIcon.Info);
+                    sb.ToString() + System.Environment.NewLine + 
+                    GetTextForUnsentFilesNotification(unsentFileChecker.UnsentFilesCounters), ToolTipIcon.Info);
         }
         public void ShowTrayNotificationForProcessingFile(string fileName)
         {
@@ -117,10 +119,9 @@ namespace check_up_money
             sb.Append(notificationText);
             sb.Append(fileName);
 
-            //logger.Info($"Show notification for processing file. Balloon timer: {balloonTipTimePeriodInMilliseconds} milliseconds.");
-
             notifyIconForMainStatus.ShowBalloonTip(balloonTipTimePeriodInMilliseconds, notificationTitle, 
-                sb.ToString() + System.Environment.NewLine + GetTextForUnsentFilesNotification(unsentFileChecker.UnsentFilesCounters), ToolTipIcon.Info);
+                sb.ToString() + System.Environment.NewLine 
+                + GetTextForUnsentFilesNotification(unsentFileChecker.UnsentFilesCounters), ToolTipIcon.Info);
         }
         private void ShowTrayNotificationForUnsentFiles()
         {
@@ -129,10 +130,9 @@ namespace check_up_money
             StringBuilder sb = new StringBuilder();
             sb.Append(GetTextForUnsentFilesNotification(unsentFileChecker.UnsentFilesCounters));
 
-            //logger.Info($"Show notification for processing file. Balloon timer: {balloonTipTimePeriodInMilliseconds} milliseconds.");
-
             notifyIconForMainStatus.ShowBalloonTip(balloonTipTimePeriodInMilliseconds, notificationTitle,
-                sb.ToString() + System.Environment.NewLine + GetTextForUnsentFilesNotification(unsentFileChecker.UnsentFilesCounters), ToolTipIcon.Info);
+                sb.ToString() + System.Environment.NewLine 
+                + GetTextForUnsentFilesNotification(unsentFileChecker.UnsentFilesCounters), ToolTipIcon.Info);
         }
         private string GetNotificationTextPartForInFiles(int inFilesCount)
         {
@@ -140,7 +140,8 @@ namespace check_up_money
                 + " " + inFilesCount
                 + " " + inFilesCount.GetDeclension("файл", "файла", "файлов") + " на обработку.";
         }
-        private string GetNotificationTextForOutLtAndCbFiles(int inFilesCount, int outCbFiles, int inTicketFiles, int outTicketFiles)
+        private string GetNotificationTextForOutLtAndCbFiles(
+            int inFilesCount, int outCbFiles, int inTicketFiles, int outTicketFiles)
         {
             string mixedText = string.Empty;
             int outFilesForCb = outCbFiles + outTicketFiles;
@@ -200,9 +201,11 @@ namespace check_up_money
 
             return unsentFilesNotificationString;
         }
-        private string GenerateNotificationString(int inFilesCount, int outCbFiles, int inTicketFiles, int outTicketFiles, AsyncObservableCollection<int> unsentFilesCounters)
+        private string GenerateNotificationString(int inFilesCount, int outCbFiles, 
+            int inTicketFiles, int outTicketFiles, AsyncObservableCollection<int> unsentFilesCounters)
         {
-            logger.Info($"Notification data: {inFilesCount} - {outCbFiles} - {inTicketFiles} - {outTicketFiles} - {unsentFilesCounters.Where(c => c > 0).Count()}");
+            logger.Info($"Notification data: {inFilesCount} " +
+                $"- {outCbFiles} - {inTicketFiles} - {outTicketFiles} - {unsentFilesCounters.Where(c => c > 0).Count()}");
 
             StringBuilder sb = new StringBuilder();
 
@@ -210,7 +213,8 @@ namespace check_up_money
 
             sb.Append(totalFiles > 0 ? GetNotificationTextPartForInFiles(totalFiles) + System.Environment.NewLine : null);
             sb.Append(totalFiles > 0 ? 
-                GetNotificationTextForOutLtAndCbFiles(inFilesCount, outCbFiles, inTicketFiles, outTicketFiles) + System.Environment.NewLine : null);
+                GetNotificationTextForOutLtAndCbFiles(inFilesCount, outCbFiles, 
+                inTicketFiles, outTicketFiles) + System.Environment.NewLine : null);
 
             sb.Append(GetTextForUnsentFilesNotification(unsentFilesCounters));
 
@@ -221,13 +225,16 @@ namespace check_up_money
             string notificationTitle = "Внимание!";
             var fc = FilterCounters(directoryStatusChecker.GetFileCounterForOutFolders());
 
-            if (inFilesCount > 0 || fc.outCbFiles > 0 || fc.inTicketFiles > 0 || fc.outTicketFiles > 0 || unsentFilesCounters.Any(c => c > 0))
+            if (inFilesCount > 0 || fc.outCbFiles > 0 
+                || fc.inTicketFiles > 0 || fc.outTicketFiles > 0 || unsentFilesCounters.Any(c => c > 0))
             {
                 notifyIconForMainStatus.ShowBalloonTip(balloonTipTimePeriodInMilliseconds, notificationTitle,
-                GenerateNotificationString(fc.mainInFiles, fc.outCbFiles, fc.inTicketFiles, fc.outTicketFiles, unsentFilesCounters), ToolTipIcon.Info);
+                GenerateNotificationString(fc.mainInFiles, fc.outCbFiles, 
+                fc.inTicketFiles, fc.outTicketFiles, unsentFilesCounters), ToolTipIcon.Info);
             }
         }
-        private (int mainInFiles, int outCbFiles, int inTicketFiles, int outTicketFiles) FilterCounters(List<(string pathType, int filesInDir)> dirCounters)
+        private (int mainInFiles, int outCbFiles, 
+            int inTicketFiles, int outTicketFiles) FilterCounters(List<(string pathType, int filesInDir)> dirCounters)
         {
             int mainInFiles = 0;
             int outCbFiles = 0;
@@ -244,8 +251,10 @@ namespace check_up_money
             {
                 "repBankMainOut", "oblBankMainOut", "cityBankMainOut", "regBankMainOut", "uniBankMainOut", "extBankMainOut",
                 "repBankMiscOut", "oblBankMiscOut", "cityBankMiscOut", "regBankMiscOut", "uniBankMiscOut", "extBankMiscOut",
-                "repBankMainOutCurrency", "oblBankMainOutCurrency", "cityBankMainOutCurrency", "regBankMainOutCurrency", "uniBankMainOutCurrency", "extBankMainOutCurrency",
-                "repBankMiscOutCurrency", "oblBankMiscOutCurrency", "cityBankMiscOutCurrency", "regBankMiscOutCurrency", "uniBankMiscOutCurrency", "extBankMiscOutCurrency"
+                "repBankMainOutCurrency", "oblBankMainOutCurrency", 
+                "cityBankMainOutCurrency", "regBankMainOutCurrency", "uniBankMainOutCurrency", "extBankMainOutCurrency",
+                "repBankMiscOutCurrency", "oblBankMiscOutCurrency", 
+                "cityBankMiscOutCurrency", "regBankMiscOutCurrency", "uniBankMiscOutCurrency", "extBankMiscOutCurrency"
             };
             outCbFiles = dirCounters.Where(dc => outCbPathTypes.Any(pt => pt.Equals(dc.pathType))).Sum(fc => fc.filesInDir);
 
@@ -257,17 +266,21 @@ namespace check_up_money
 
             var outTicketPathTypes = new List<string>
             {
-                "repBankTicketOut", "oblBankTicketOut", "cityBankTicketOut", "regBankTicketOut","uniBankTicketOut", "extBankTicketOut",
-                "repBankTicketOutCurrency", "oblBankTicketOutCurrency", "cityBankTicketOutCurrency", "regBankTicketOutCurrency","uniBankTicketOutCurrency", "extBankTicketOutCurrency"
+                "repBankTicketOut", "oblBankTicketOut", "cityBankTicketOut", "regBankTicketOut",
+                "uniBankTicketOut", "extBankTicketOut",
+                "repBankTicketOutCurrency", "oblBankTicketOutCurrency", "cityBankTicketOutCurrency", 
+                "regBankTicketOutCurrency","uniBankTicketOutCurrency", "extBankTicketOutCurrency"
             };
             outTicketFiles = dirCounters.Where(dc => outTicketPathTypes.Any(pt => pt.Equals(dc.pathType))).Sum(fc => fc.filesInDir);
 
 
-            loggerDebug.Debug($"Filtered file counters. main in: {mainInFiles} - outCb: {outCbFiles} - inTicket: {inTicketFiles} - outTicket: {outTicketFiles} ");
+            loggerDebug.Debug($"Filtered file counters. main in: {mainInFiles} " +
+                $"- outCb: {outCbFiles} - inTicket: {inTicketFiles} - outTicket: {outTicketFiles} ");
 
             return (mainInFiles, outCbFiles, inTicketFiles, outTicketFiles);
         }
-        public async Task RunNotificationReminderForFiles(CancellationTokenSource source, BindingList<CheckUpBlob> notificationData = null)
+        public async Task RunNotificationReminderForFiles(CancellationTokenSource source, 
+            BindingList<CheckUpBlob> notificationData = null)
         {
             // Define the cancellation token.
             CancellationToken token = source.Token;

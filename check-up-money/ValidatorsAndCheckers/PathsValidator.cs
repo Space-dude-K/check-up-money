@@ -21,7 +21,8 @@ namespace check_up_money.ValidatorsAndCheckers
         {
             loggerDebug.Debug("Init.");
         }
-        public bool ValidatePathSettingsFromCfgs(List<(string pathType, string path, string fileMask, bool isEnabled, bool isCurrencyEnabled)> pathSettings)
+        public bool ValidatePathSettingsFromCfgs(List<(string pathType, string path, string fileMask, 
+            bool isEnabled, bool isCurrencyEnabled)> pathSettings)
         {
             List<bool> pathValidationStatuses = new List<bool>();
             bool isAllPathValid = false;
@@ -71,7 +72,8 @@ namespace check_up_money.ValidatorsAndCheckers
 
             return isPathValid;
         }
-        public bool ValidatePathSettingsFromControlsOld(System.Windows.Forms.Control.ControlCollection controls, List<Tuple<string, bool>> budgetSettings)
+        public bool ValidatePathSettingsFromControlsOld(System.Windows.Forms.Control.ControlCollection controls,
+            List<Tuple<string, bool>> budgetSettings)
         {
             int controlCounter = 0;
             bool isAllPathsValid = false;
@@ -112,7 +114,8 @@ namespace check_up_money.ValidatorsAndCheckers
                     }
                     else if (!Directory.Exists(textBoxStr))
                     {
-                        EventHandler eh = new EventHandler((sender, e) => ShowToolTip((Control)sender, "Directory didnt exists!", 400, 8));
+                        EventHandler eh = new EventHandler((sender, e) => ShowToolTip((Control)sender, 
+                            "Directory didnt exists!", 400, 8));
 
                         x.BackColor = Color.Red;
                         x.MouseEnter += eh;
@@ -153,7 +156,8 @@ namespace check_up_money.ValidatorsAndCheckers
 
             return isAllPathsValid;
         }
-        public bool ValidatePathSettingsFromControls(List<(string pathType, string path)> pathSettings, Control.ControlCollection controls)
+        public bool ValidatePathSettingsFromControls(List<(string pathType, string path)> pathSettings,
+            Control.ControlCollection controls)
         {
             bool isSettingsValid = true;
 
@@ -252,7 +256,8 @@ namespace check_up_money.ValidatorsAndCheckers
 
             return isAllBudgetInputValid;
         }
-        public bool IsDbSettingsInputsFromControlsValid(System.Windows.Forms.Control.ControlCollection controls, List<RequisiteInformation> riList, bool isUpdateCheck = false)
+        public bool IsDbSettingsInputsFromControlsValid(System.Windows.Forms.Control.ControlCollection controls, 
+            List<RequisiteInformation> riList, bool isUpdateCheck = false)
         {
             bool isErrorRaised = false;
 
@@ -325,7 +330,8 @@ namespace check_up_money.ValidatorsAndCheckers
         {
             try
             {
-                using (FileStream fs = File.Create(Path.Combine(dirPath, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + ".test"), 1, FileOptions.DeleteOnClose))
+                using (FileStream fs = File.Create(Path.Combine(dirPath, 
+                    Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + ".test"), 1, FileOptions.DeleteOnClose))
                 { }
 
                 return true;

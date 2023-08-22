@@ -12,9 +12,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace check_up_money.Settings
 {
@@ -36,30 +35,6 @@ namespace check_up_money.Settings
             mainSettingsConfigPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Settings", "MainSettings.config");
             this.cypher = cypher;
         }
-        /*
-        public Configurator(ICypher cypher)
-        {
-            loggerDebug.Debug("Init.");
-
-            this.cypher = cypher;
-#if DEBUG
-            if (AppDomain.CurrentDomain.GetAssemblies().Any(
-                a => a.FullName.ToLowerInvariant().StartsWith("nunit.framework")))
-            {
-                mainSettingsConfigPath = System.IO.Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName,
-                    @"check-up-money-test\Settings", "TestSettings.config");
-                Debug.WriteLine("nunit: " + mainSettingsConfigPath);
-            }
-            else
-            {
-                mainSettingsConfigPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Settings", "MainSettings.config");
-                Debug.WriteLine("not nunit: " + mainSettingsConfigPath);
-            }
-#else
-            mainSettingsConfigPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Settings", "MainSettings.config");
-#endif
-        }
-        */
         #region Budget, Bd, Path, Logger settings
         private ConfigurationSection LoadConfigByPath(string path, string section)
         {
@@ -231,18 +206,26 @@ namespace check_up_money.Settings
 
             SettingsConfiguration myConfig = (SettingsConfiguration)LoadConfigByPath(mainSettingsConfigPath, "settings");
 
-            foreach (DataBaseObjectElement dboe in myConfig.DbSettings)
+            try
             {
-                _dbSettings.Add(new RequisiteInformation(
-                    CheckSetting(dboe.DriverElement),
-                    CheckSetting(dboe.HostElement),
-                    CheckSetting(dboe.InstanceElement),
-                    CheckSetting(dboe.DataBaseElement),
-                    cypher.ToSecureString(CheckSetting(dboe.DataBaseElementUser)),
-                    CheckSetting(dboe.DataBaseElementUserSalt),
-                    cypher.ToSecureString(CheckSetting(dboe.DataBaseElementPassword)),
-                    CheckSetting(dboe.DataBaseElementPasswordSalt)
-                    ));
+                foreach (DataBaseObjectElement dboe in myConfig.DbSettings)
+                {
+                    _dbSettings.Add(new RequisiteInformation(
+                        CheckSetting(dboe.DriverElement),
+                        CheckSetting(dboe.HostElement),
+                        CheckSetting(dboe.InstanceElement),
+                        CheckSetting(dboe.DataBaseElement),
+                        cypher.ToSecureString(CheckSetting(dboe.DataBaseElementUser)),
+                        CheckSetting(dboe.DataBaseElementUserSalt),
+                        cypher.ToSecureString(CheckSetting(dboe.DataBaseElementPassword)),
+                        CheckSetting(dboe.DataBaseElementPasswordSalt)
+                        ));
+                }
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Ошибка при загрузке настроек для баз данных. Обратитесь к администратору.");
             }
 
             return _dbSettings;

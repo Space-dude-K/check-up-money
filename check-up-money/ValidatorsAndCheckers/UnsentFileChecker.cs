@@ -32,7 +32,8 @@ namespace check_up_money
                 return unsentFilesCounters;
             }
         }
-        public UnsentFileChecker(ToolTip toolTipForLabels, ISqlCmdExecutor sqlCmdExecutor, ICypher cypher, IRemoteHostAvailabilityChecker rhac)
+        public UnsentFileChecker(ToolTip toolTipForLabels, ISqlCmdExecutor sqlCmdExecutor, ICypher cypher, 
+            IRemoteHostAvailabilityChecker rhac)
         {
             unsentFilesCounters = new AsyncObservableCollection<int>() { 0,0,0,0,0,0 };
             this.toolTipForLabels = toolTipForLabels;
@@ -82,7 +83,8 @@ namespace check_up_money
         /// <see cref="List{T}"></see> с <see cref="Tuple{string, RequisiteInformation, Control, bool}"></see>  типом бюджета, 
         /// реквизитами БД, инфо панелью и состоянием.
         /// </returns>
-        public List<(string budgetType, RequisiteInformation ri, Control counterLabel, bool isEnabled)> GetDataSetForUnsentfileChecker(
+        public List<(string budgetType, RequisiteInformation ri, Control counterLabel, bool isEnabled)> 
+            GetDataSetForUnsentfileChecker(
             List<(string budgetType, bool isEnabled)> unsentFileSettings, 
             List<RequisiteInformation> databaseInfos, List<(string budgetType, Control unsentFilesLabel)> unsentFilesControls)
         {
